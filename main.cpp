@@ -65,7 +65,11 @@ int main()
 	std::cout << student;
 	Profesor profesor = Profesor("Dumitran", "Adrian", "Romana");
 	profesor.noteazaStudent(student, 9);
-	std::cout << student;
+	//std::cout << student;
+
+	clasa.afiseazaStudenti();
+	clasa.stergeStudent(10001);
+	clasa.afiseazaStudenti();
 
 	return 0;
 }

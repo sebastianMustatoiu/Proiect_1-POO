@@ -11,24 +11,24 @@ void Clasa::stergeStudent(int ID) {
 	for (auto i = studenti.begin(); i != studenti.end(); i++) {
 		if (i->getID() == ID) {
 			i = studenti.erase(i);
-			std::cout << "Studentul cu ID-ul " << ID << " a fost sters din clasa. \n";
+			std::cout << "Studentul cu ID-ul " << ID << " a fost sters din clasa. \n\n";
 			gasit = true;
 			break;
 		}
 	}
 
 	if (!gasit) {
-		std::cout << "Nu exista student cu ID-ul " << ID << " in clasa.\n";
+		std::cout << "Nu exista student cu ID-ul " << ID << " in clasa.\n\n";
 	}
 }
 
 void Clasa::afiseazaStudenti() const {
 	if (studenti.empty()) {
-		std::cout << "Clasa nu are studenti.\n";
+		std::cout << "Clasa nu are studenti.\n\n";
 		return;
 	}
 
-	std::cout << "Studentii clasei sunt: \n";
+	std::cout << "Studentii clasei sunt: \n\n";
 	for (const auto& student : studenti) {
 		std::cout << student << "\n";
 	}

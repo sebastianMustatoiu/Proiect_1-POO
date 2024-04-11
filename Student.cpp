@@ -184,10 +184,11 @@ std::ostream& operator<<(std::ostream& os, const Student& student) {
 	os << "Nume: " << student.nume << ", Prenume: " << student.prenume
 	   << ", Varsta: " << student.varsta << ", ID: " << student.ID << "\n";
 
-	os << "Notele studentului: \n";
+	os << "Notele studentului: \n\n";
 	for (const auto& nota : student.note) {
 		os << nota.first << ": " << nota.second << "\n";
 	}
+	std::cout << "\n";
 	return os;
 }
 

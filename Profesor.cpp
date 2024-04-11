@@ -1,7 +1,7 @@
 #include "Profesor.h"
 
 Profesor::Profesor() : nume(""), prenume(""), disciplina("") {}
-Profesor::Profesor(const std::string& nume, const std::string& prenume, const std::string& discicplina) : nume(nume), prenume(prenume), disciplina(disciplina) {}
+Profesor::Profesor(const std::string& nume, const std::string& prenume, const std::string& disciplina) : nume(nume), prenume(prenume), disciplina(disciplina) {}
 
 std::string Profesor::getNume() {
 	return nume;
