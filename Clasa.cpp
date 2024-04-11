@@ -53,7 +53,7 @@ void Clasa::afiseazaMedieGenerala(){
 
 	if (numarStudenti > 0) {
 		double mediaGeneralaClasa = sumaMedii / numarStudenti;
-		std::cout << "Media generala a clasei: " << std::fixed << std::setprecision(2) << mediaGeneralaClasa << std::endl;
+		std::cout << "Media generala a clasei: " << std::fixed << std::setprecision(2) << mediaGeneralaClasa << "\n\n";
 	}
 	else {
 		std::cout << "Nu exista studenti in clasa pentru a calcula media generala.\n";

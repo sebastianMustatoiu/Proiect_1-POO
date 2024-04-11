@@ -41,7 +41,7 @@ int Student::getID() const {
 	return this->ID;
 }
 
-std::vector<std::pair<std::string, int>> Student::getNote() const {
+std::map<std::string, std::vector<int>> Student::getNote() const {
 	return this->note;
 }
 
@@ -100,12 +100,17 @@ void Student::calculeazaMedieMaterii() {
 	std::map<std::string, double>sumaNoteMaterii;
 	std::map<std::string, int>numarNoteMaterii;
 
-	for (const auto& nota : note) {
-		const std::string& materie = nota.first;
-		double valoareNota = nota.second;
+	for (const auto& pair : note) {
+		const std::string& materie = pair.first;
+		const std::vector<int>& noteMaterie = pair.second;
+		double sumaNote = 0;
 
-		sumaNoteMaterii[materie] += valoareNota;
-		numarNoteMaterii[materie]++;
+		for (int nota : noteMaterie) {
+			sumaNote += nota;
+		}
+
+		sumaNoteMaterii[materie] = sumaNote;
+		numarNoteMaterii[materie] = noteMaterie.size();
 
 	}
 
@@ -113,15 +118,17 @@ void Student::calculeazaMedieMaterii() {
 
 	for (const auto& materie : sumaNoteMaterii) {
 		double media = materie.second / numarNoteMaterii[materie.first];
+		media = std::round(media);
 		medieMaterii.push_back(std::make_pair(materie.first, media));
 	}
 }
 
 void Student::adaugaNota(const std::string& materie, int nota) {
-	note.push_back(std::make_pair(materie, nota));
+	note[materie].push_back(nota);
 }
 
 void Student::calculeazaMedieGenerala() {
+	Student::calculeazaMedieMaterii();
 	if (medieMaterii.empty()) {
 		std::cout << "Nu exista medii disponibile pentru a calcula media generala";
 		return;
@@ -151,6 +158,7 @@ void Student::afisareMediiMaterii() {
 
 
 void Student::afisareMedieGenerala() {
+	Student::calculeazaMedieMaterii();
 	Student::calculeazaMedieGenerala();
 	std::cout << "Media generala a studentului: " << nume << " " << prenume << " este: ";
 	std::cout << std::fixed << std::setprecision(2) << medieGenerala << std::endl << std::endl;
@@ -184,9 +192,13 @@ std::ostream& operator<<(std::ostream& os, const Student& student) {
 	os << "Nume: " << student.nume << ", Prenume: " << student.prenume
 	   << ", Varsta: " << student.varsta << ", ID: " << student.ID << "\n";
 
-	os << "Notele studentului: \n\n";
-	for (const auto& nota : student.note) {
-		os << nota.first << ": " << nota.second << "\n";
+	os << "Notele studentului: \n";
+	for (const auto& materie : student.note) {
+		os << materie.first << ": ";
+		for (const auto& nota : materie.second) {
+			os << nota << "; ";
+		}
+		std::cout << "\n";
 	}
 	std::cout << "\n";
 	return os;

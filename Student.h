@@ -16,7 +16,7 @@ private:
 	std::string prenume; //prenume
 	int varsta; //varsta
 	int ID; //id
-	std::vector<std::pair<std::string, int>> note; //vector de perechi, de materii si note
+	std::map<std::string,std::vector<int>> note; //map de materie + notele materiei
 	std::vector<std::pair<std::string, double>> medieMaterii;
 	double medieGenerala;
 
@@ -31,7 +31,7 @@ public:
 	std::string getPrenume() const;
 	int getVarsta() const;
 	int getID() const;
-	std::vector<std::pair<std::string, int>> getNote() const;
+	std::map<std::string, std::vector<int>> getNote() const;
 	double getMedieGenerala() const;
 	std::vector<std::pair<std::string, double>> getMedieMaterii() const;
 
